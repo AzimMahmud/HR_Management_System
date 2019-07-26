@@ -1,0 +1,93 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="HR_Management_System.SiteMaster" %>
+<%@ Import Namespace="System.Activities.Statements" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head runat="server">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/modernizr") %>
+    </asp:PlaceHolder>
+    <link href="Content/bootstrap.css" rel="stylesheet">
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+
+</head>
+<body>
+    <form runat="server">
+        <asp:ScriptManager runat="server">
+            <Scripts>
+                <%--To learn more about bundling scripts in ScriptManager see https://go.microsoft.com/fwlink/?LinkID=301884 --%>
+                <%--Framework Scripts--%>
+                <asp:ScriptReference Name="MsAjaxBundle" />
+                <asp:ScriptReference Name="jquery" />
+                <asp:ScriptReference Name="bootstrap" />
+                <asp:ScriptReference Name="WebForms.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebForms.js" />
+                <asp:ScriptReference Name="WebUIValidation.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebUIValidation.js" />
+                <asp:ScriptReference Name="MenuStandards.js" Assembly="System.Web" Path="~/Scripts/WebForms/MenuStandards.js" />
+                <asp:ScriptReference Name="GridView.js" Assembly="System.Web" Path="~/Scripts/WebForms/GridView.js" />
+                <asp:ScriptReference Name="DetailsView.js" Assembly="System.Web" Path="~/Scripts/WebForms/DetailsView.js" />
+                <asp:ScriptReference Name="TreeView.js" Assembly="System.Web" Path="~/Scripts/WebForms/TreeView.js" />
+                <asp:ScriptReference Name="WebParts.js" Assembly="System.Web" Path="~/Scripts/WebForms/WebParts.js" />
+                <asp:ScriptReference Name="Focus.js" Assembly="System.Web" Path="~/Scripts/WebForms/Focus.js" />
+                <asp:ScriptReference Name="WebFormsBundle" />
+                <%--Site Scripts--%>
+            </Scripts>
+        </asp:ScriptManager>
+        
+        
+        <nav class="navbar navbar-expand-lg navbar-dark bg-info static-top">
+            <div class="container">
+                <a class="navbar-brand" href="#">Human Resource Management</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                         <ul class="navbar-nav ml-auto">
+                        
+                            <%--<li class="nav-item"><a runat="server" class="nav-link" href="~/">Home</a></li>--%>
+                             <asp:LoginView runat="server" ViewStateMode="Enabled" >
+                                 <AnonymousTemplate>
+                                     <ul class="navbar-nav mr-auto float-right">
+                                         <li class="nav-item"><a runat="server" class="nav-link" href="~/Account/Register">Register</a></li>
+                                         <li class="nav-item"><a runat="server" class="nav-link" href="~/Account/Login">Log in</a></li>
+                                     </ul>
+                                 </AnonymousTemplate>
+                                 <LoggedInTemplate>
+                                     <ul class="nav navbar-nav navbar-right-top">
+                                         <li><a runat="server" class="btn btn-primary" href="~/Admin/Home" title="Manage your account">Dashboard</a></li>
+                                         <li>
+                                             <asp:LoginStatus CssClass="btn btn-danger" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="Unnamed_LoggingOut" />
+                                         </li>
+                                     </ul>
+                                 </LoggedInTemplate>
+                             </asp:LoginView>
+
+
+                        </ul>
+                        
+                </div>
+            </div>
+        </nav>
+        
+
+        
+        
+      
+
+
+        
+        <div class="container main-content">
+            <asp:ContentPlaceHolder ID="MainContent" runat="server">
+            </asp:ContentPlaceHolder>
+            <hr />
+            <footer>
+                <p>&copy; <%: DateTime.Now.Year %> - Human Resource Management System</p>
+            </footer>
+        </div>
+    </form>
+</body>
+</html>

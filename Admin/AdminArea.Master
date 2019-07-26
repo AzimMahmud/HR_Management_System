@@ -1,0 +1,270 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="AdminArea.master.cs" Inherits="HR_Management_System.Admin.AdminArea" %>
+
+
+
+<!doctype html>
+<html lang="en">
+ 
+<head runat="server">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title><%: Page.Title %> - My ASP.NET Application</title>
+
+  
+    <webopt:bundlereference runat="server" path="~/Content/css" />
+    
+    <asp:PlaceHolder runat="server">
+        <%: Scripts.Render("~/bundles/CustomJS") %>
+        <%: Scripts.Render("~/bundles/modernizr") %>
+        <%: Scripts.Render("~/bundles/MsAjaxJs") %>
+        <%: Scripts.Render("~/bundles/WebFormsJs") %>
+    </asp:PlaceHolder>
+   
+</head>
+
+<body>
+    
+
+    <form runat="server">
+
+        <asp:ScriptManager ID="ScriptManager1" runat="server" EnablePageMethods="true"></asp:ScriptManager>
+
+    <!-- ============================================================== -->
+    <!-- main wrapper -->
+    <!-- ============================================================== -->
+    <div class="dashboard-main-wrapper">
+         <!-- ============================================================== -->
+        <!-- navbar -->
+        <!-- ============================================================== -->
+         <div class="dashboard-header">
+            <nav class="navbar navbar-expand-lg bg-white fixed-top">
+                <a class="navbar-brand" href="../index.html">HR</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse " id="navbarSupportedContent">
+                    <ul class="navbar-nav ml-auto navbar-right-top">
+                        <li class="nav-item dropdown nav-user">
+
+                                
+                            <a class="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2"  aria-haspopup="true" aria-expanded="false"> <asp:LoginStatus CssClass="btn btn-rounded mb-2 btn-info" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" OnLoggingOut="OnLoggingOut" />
+                            </a>
+                                    
+                                        
+
+                                
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end navbar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- left sidebar -->
+        <!-- ============================================================== -->
+      <div class="nav-left-sidebar sidebar-dark">
+            <div class="menu-list">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="d-xl-none d-lg-none" href="#">Dashboard</a>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav flex-column">
+                            <li class="nav-divider">
+                                Admin Dashboard
+                            </li>
+                            <li class="nav-item ">
+                                <a runat="server" class="nav-link active" href="~/Admin/Home.aspx"  aria-expanded="false"><i class="fa fa-fw fa-user-circle"></i>Dashboard</a>
+                            </li>
+  
+                            <li class="nav-item ">
+                                <a runat="server" class="nav-link" href="~/Department/Details"  aria-expanded="false"><i class="fas fa-code-branch"></i>Department</a>
+                            </li>
+            
+                            <li  class="nav-item ">
+                                <a runat="server" class="nav-link" href="~/Designation/Details"  aria-expanded="false"><i class="fas fa-briefcase"></i>Designation</a>
+                            </li>
+
+                            <li runat="server" class="nav-item">
+                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-2" aria-controls="submenu-2"><i class="fas fa-database"></i>Employee Info</a>
+                                <div id="submenu-2" class="collapse submenu" style="">
+                                    <ul class="nav flex-column">
+                                        
+                                        <asp:LoginView runat="server" >
+                                                <RoleGroups>
+                                                   <asp:RoleGroup Roles="Admin">
+                                                      <ContentTemplate>
+                                                          <li class="nav-item">
+                                                              <a class="nav-link" runat="server" href="~/Employee/New">Add New</a>
+                                                          </li>
+                                                      </ContentTemplate>
+                                                   </asp:RoleGroup>
+                                               </RoleGroups>
+                                        </asp:LoginView>
+
+                                        
+                                        <li class="nav-item">
+                                            <asp:HyperLink ID="linkEmpDetails" runat="server" CssClass="nav-link" NavigateUrl="~/Employee/Details">Employee List</asp:HyperLink>
+                           
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" runat="server" href="~/Employee/Payments/Details">Employee Payment</a>
+                                        </li>    
+                                    </ul>
+                                </div>
+                            </li>
+                            
+                           
+
+                            <asp:LoginView runat="server">
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles="Admin">
+                                        <ContentTemplate>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-2" aria-controls="submenu-1-2"><i class="fas fa-people-carry"></i>Job Assign</a>
+                                                <div id="submenu-1-2" class="collapse submenu" style="">
+                                                    <ul class="nav flex-column">  
+                                                        
+                                                           
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" runat="server" href="~/Employee/JobAssignmentDetails">Job Details</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" runat="server" href="~/Employee/AssignJob">Assign Role</a>
+                                                        </li>
+                                                         
+
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView>
+                            
+                            
+                           
+                            <asp:LoginView runat="server">
+                                <RoleGroups>
+                                    <asp:RoleGroup Roles="Admin">
+                                        <ContentTemplate>
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="#" data-toggle="collapse" aria-expanded="false" data-target="#submenu-1-3" aria-controls="submenu-1-2"><i class="fa fa-fw fa-rocket"></i>Role Manager</a>
+                                                <div id="submenu-1-3" class="collapse submenu" style="">
+                                                    <ul class="nav flex-column">  
+                                                        
+                                                           
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" runat="server" href="~/User/Roles">Roles List</a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" runat="server" href="~/User/Roles/Assign">Assign Role</a>
+                                                        </li>
+                                                         
+
+                                                    </ul>
+                                                </div>
+                                            </li>
+                                        </ContentTemplate>
+                                    </asp:RoleGroup>
+                                </RoleGroups>
+                            </asp:LoginView>
+                            
+
+                          
+                            
+                            
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- ============================================================== -->
+        <!-- end left sidebar -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- wrapper  -->
+        <!-- ============================================================== -->
+        <div class="dashboard-wrapper">
+            <div class="container-fluid dashboard-content">
+                <div class="row">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"> 
+                        
+                             <asp:ContentPlaceHolder ID="MainContent" runat="server">
+                                 
+                                 
+                                 
+                                 
+
+                            </asp:ContentPlaceHolder>
+                        
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- footer -->
+            <!-- ============================================================== -->
+            <div class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                           
+                                Copyright &copy; 2019 Concept. All rights reserved by <a href="https://azim.me">Azim Mahmud</a>.
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ============================================================== -->
+            <!-- end footer -->
+            <!-- ============================================================== -->
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- end main wrapper -->
+    <!-- ============================================================== -->
+    <!-- Optional JavaScript -->
+    <%--<script src="../assets/vendor/jquery/jquery-3.3.1.min.js"></script>
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.js"></script>
+    <script src="../assets/vendor/slimscroll/jquery.slimscroll.js"></script>
+    <script src="../assets/libs/js/main-js.js"></script>--%>
+
+     
+
+    </form>
+
+  
+   
+
+
+<script>
+    $('.collapse').on('shown.bs.collapse', function() {
+        $(this).parent().find(".fa-angle-down").removeClass("fa-angle-down").addClass("fa-angle-up");
+    }).on('hidden.bs.collapse', function() {
+        $(this).parent().find(".fa-angle-up").removeClass("fa-angle-up").addClass("fa-angle-down");
+    });
+
+    $('.panel-heading a').click(function() {
+        $('.panel-heading').removeClass('active');
+
+        //If the panel was open and would be closed by this click, do not active it
+        if (!$(this).closest('.panel').find('.panel-collapse').hasClass('in'))
+            $(this).parents('.panel-heading').addClass('active');
+    });
+</script>
+
+
+
+
+</body>
+ 
+</html>
+
+
+
+
+
